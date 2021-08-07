@@ -28,7 +28,10 @@ SECRET_KEY = os.getenv( "DJANGO_SECRET_KEY" )
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool( os.getenv( "DJANGO_DEBUG", True ) ) 
 
-ALLOWED_HOSTS = [ "*" ]
+ALLOWED_HOSTS = ["*"]
+CORS_ORIGIN_ALLOW_ALL = True 
+
+#CORS_ALLOWED_ORIGINS = [ "http://127.0.0.1:5500" ]
 
 # Application definition
 
@@ -40,6 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
+    'django_filters',
+    'corsheaders',
 
     # My apps
     'vet',
@@ -53,7 +59,14 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES" : (
+        "rest_framework.authentication.TokenAuthentication",
+    ),
+}
 
 ROOT_URLCONF = 'dogtor.urls'
 

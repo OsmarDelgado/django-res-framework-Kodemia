@@ -14,6 +14,7 @@ class PetOwner(models.Model):
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
 
+
 class Pet(models.Model):
     """Pet model."""
 
@@ -34,6 +35,7 @@ class Pet(models.Model):
     def __str__(self):
         return f"{self.name}, {self.type}"
 
+
 class PetDate(models.Model):
     """Pets date model."""
 
@@ -45,7 +47,6 @@ class PetDate(models.Model):
         ("vaccine", "Vaccine"),
         ("deworming", "Deworming"),
     )
-    
     type = models.CharField(max_length=50, choices=DATE_TYPES, default="esthetic")
     created_at = models.DateTimeField(auto_now_add=True)
 
